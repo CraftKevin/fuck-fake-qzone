@@ -9,10 +9,8 @@ def get_ip():
     header={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36"}
     page=req.get(url,headers=header)
     page.encoding='utf-8'
-    print(page.text)
     html=etree.HTML(page.text)
     tree=etree.tostring(html)
-    #print(tree.decode('utf-8'))
     ip_list=[]
     for i in range(3,23):
         addr=html.xpath('//*[@id="ip_list"]/tr['+str(i)+']/td[2]/text()')
@@ -21,8 +19,8 @@ def get_ip():
         ip_list.append(protocol[0]+"://"+addr[0]+':'+port[0])
     return ip_list
 def test_proxy(proxy):
-    url = "http://cmglkw.ltd/"
-    header = {"host":"obs-c0ba.obs.cn-east-2.myhuaweicloud.com","User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36",}
+    url = "http://baidu.com"
+    header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36",}
     proxies={}
     proxies[proxy[:proxy.index(':')]]=proxy[proxy.index(':')+3:]
     try:
